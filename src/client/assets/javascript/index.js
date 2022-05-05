@@ -322,10 +322,18 @@ function defaultFetchOpts() {
 
 function getTracks() {
 	// GET request to `${SERVER}/api/tracks`
+	fetch(`${SERVER}/api/tracks`)
+	   	.then(response => response.json())
+	   	.then(data => console.log(data))
+		.catch((error) => (console.error('Error:', error)))
 }
 
 function getRacers() {
 	// GET request to `${SERVER}/api/cars`
+	fetch(`${SERVER}/api/cars`)
+		.then(response => response.json())
+		.then(data => console.log(data))
+ 		.catch((error) => (console.error('Error:', error)))
 }
 
 function createRace(player_id, track_id) {
