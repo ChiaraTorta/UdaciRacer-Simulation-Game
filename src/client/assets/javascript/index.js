@@ -22,6 +22,8 @@ async function onPageLoad() {
 		const racers = await getRacers()
 		const racerCarsHtml = renderRacerCars(racers)
 		renderAt('#racers', racerCarsHtml)
+		console.log(tracks);
+		console.log(racers);
 	} catch(error) {
 		console.log("Problem getting tracks and racers ::", error.message)
 		console.error(error)
@@ -71,27 +73,30 @@ async function delay(ms) {
 
 // This async function controls the flow of the race, add the logic and error handling
 async function handleCreateRace() {
-	// render starting UI
 	try {
-		renderAt('#race', renderRaceStartView(`Track ${store.track_id}`))
+		// Get player_id and track_id from the store
+		const { player_id, track_id } = store
+		
+		// render starting UI
+		renderAt('#race', renderRaceStartView(`Track ${track_id}`))
+
+		// invoke the API call to create the race, then save the result
+		const race = await createRace(player_id, track_id)
+		console.log(race);
+
+		// TODO - update the store with the race id
+		// For the API to work properly, the race id should be race id - 1
+		
+		// The race has been created, now start the countdown
+		// TODO - call the async function runCountdown
+
+		// TODO - call the async function startRace
+
+		// TODO - call the async function runRace
 		
 	} catch (error) {
 		console.log(error.message);
 	}
-
-	// TODO - Get player_id and track_id from the store
-	
-	// const race = TODO - invoke the API call to create the race, then save the result
-
-	// TODO - update the store with the race id
-	// For the API to work properly, the race id should be race id - 1
-	
-	// The race has been created, now start the countdown
-	// TODO - call the async function runCountdown
-
-	// TODO - call the async function startRace
-
-	// TODO - call the async function runRace
 }
 
 function runRace(raceID) {
@@ -153,7 +158,7 @@ function handleSelectPodRacer(target) {
 	target.classList.add('selected')
 
 	// save the selected racer to the store
-	store.race_id = target.id
+	store.player_id = target.id
 }
 
 function handleSelectTrack(target) {
