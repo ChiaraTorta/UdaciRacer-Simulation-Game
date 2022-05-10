@@ -328,14 +328,12 @@ function defaultFetchOpts() {
 // TODO - Make a fetch call (with error handling!) to each of the following API endpoints 
 
 function getTracks() {
-	// GET request to `${SERVER}/api/tracks`
 	return fetch(`${SERVER}/api/tracks`)
  	   	.then(response => response.json())
 		.catch(error => console.error(error))
 }
 
 function getRacers() {
-	// GET request to `${SERVER}/api/cars`
 	return fetch(`${SERVER}/api/cars`)
  		.then(response => response.json())
 		.catch(error => console.error(error))
@@ -358,7 +356,7 @@ function createRace(player_id, track_id) {
 
 function getRace(id) {
 	// GET request to `${SERVER}/api/races/${id}`
-	fetch(`${SERVER}/api/races/${id}`)
+	return fetch(`${SERVER}/api/races/${id}`)
 		.then(response => response.json())
 		.catch(error => console.error(error))
 }
