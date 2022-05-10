@@ -169,7 +169,6 @@ function handleSelectTrack(target) {
 
 	// save the selected track id to the store
 	store.track_id = target.id
-	debugger
 }
 
 function handleAccelerate() {
