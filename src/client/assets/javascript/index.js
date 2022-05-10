@@ -33,7 +33,8 @@ function setupClickHandlers() {
 		const { target } = event
 
 		// Race track form field
-		if (target.matches('.card.track')) {
+		// Use closest instead of matches assures that click events inside the track card are also handled
+		if (target.closest('.card.track')) {
 			handleSelectTrack(target)
 		}
 
@@ -145,6 +146,11 @@ function handleSelectPodRacer(target) {
 }
 
 function handleSelectTrack(target) {
+	let { track_id } = store
+	// if the target is inside the track card, update target
+	if (!target.id) {
+		target = target.closest('.card.track')
+	}
 	console.log("selected a track", target.id)
 
 	// remove class selected from all track options
@@ -156,8 +162,8 @@ function handleSelectTrack(target) {
 	// add class selected to current target
 	target.classList.add('selected')
 
-	// TODO - save the selected track id to the store
-	
+	// save the selected track id to the store
+	track_id = target.id
 }
 
 function handleAccelerate() {
