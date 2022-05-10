@@ -75,17 +75,20 @@ async function delay(ms) {
 async function handleCreateRace() {
 	try {
 		// Get player_id and track_id from the store
-		const { player_id, track_id } = store
+		let { player_id, track_id, race_id } = store
 		
 		// render starting UI
 		renderAt('#race', renderRaceStartView(`Track ${track_id}`))
 
 		// invoke the API call to create the race, then save the result
-		const race = await createRace(player_id, track_id)
-		console.log(race);
+		const raceView = await createRace(player_id, track_id)
 
-		// TODO - update the store with the race id
+		// update the store with the race id
+		race_id = raceView.ID
+
 		// For the API to work properly, the race id should be race id - 1
+		const race = await getRace(race_id-1)
+		console.log(race);
 		
 		// The race has been created, now start the countdown
 		// TODO - call the async function runCountdown
