@@ -15,17 +15,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
 async function onPageLoad() {
 	try {
-		getTracks()
-			.then(tracks => {
-				const html = renderTrackCards(tracks)
-				renderAt('#tracks', html)
-			})
+		const tracks = await getTracks()
+		const trackCardsHtml = renderTrackCards(tracks)
+		renderAt('#tracks', trackCardsHtml)
 
-		getRacers()
-			.then((racers) => {
-				const html = renderRacerCars(racers)
-				renderAt('#racers', html)
-			})
+		const racers = await getRacers()
+		const racerCarsHtml = renderRacerCars(racers)
+		renderAt('#racers', racerCarsHtml)
 	} catch(error) {
 		console.log("Problem getting tracks and racers ::", error.message)
 		console.error(error)
@@ -322,18 +318,16 @@ function defaultFetchOpts() {
 
 function getTracks() {
 	// GET request to `${SERVER}/api/tracks`
-	fetch(`${SERVER}/api/tracks`)
-	   	.then(response => response.json())
-	   	.then(data => console.log(data))
-		.catch((error) => (console.error('Error:', error)))
+	return fetch(`${SERVER}/api/tracks`)
+ 	   	.then(response => response.json())
+		.catch(error => console.error(error))
 }
 
 function getRacers() {
 	// GET request to `${SERVER}/api/cars`
-	fetch(`${SERVER}/api/cars`)
-		.then(response => response.json())
-		.then(data => console.log(data))
- 		.catch((error) => (console.error('Error:', error)))
+	return fetch(`${SERVER}/api/cars`)
+ 		.then(response => response.json())
+		.catch(error => console.error(error))
 }
 
 function createRace(player_id, track_id) {
@@ -353,6 +347,9 @@ function createRace(player_id, track_id) {
 
 function getRace(id) {
 	// GET request to `${SERVER}/api/races/${id}`
+	fetch(`${SERVER}/api/races/${id}`)
+		.then(response => response.json())
+		.catch(error => console.error(error))
 }
 
 function startRace(id) {
