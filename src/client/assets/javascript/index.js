@@ -22,8 +22,6 @@ async function onPageLoad() {
 		const racers = await getRacers()
 		const racerCarsHtml = renderRacerCars(racers)
 		renderAt('#racers', racerCarsHtml)
-		console.log(tracks);
-		console.log(racers);
 	} catch(error) {
 		console.log("Problem getting tracks and racers ::", error.message)
 		console.error(error)
