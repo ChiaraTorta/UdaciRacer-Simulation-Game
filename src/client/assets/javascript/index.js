@@ -39,7 +39,7 @@ function setupClickHandlers() {
 		}
 
 		// Podracer form field
-		if (target.matches('.card.podracer')) {
+		if (target.closest('.card.podracer')) {
 			handleSelectPodRacer(target)
 		}
 
@@ -131,6 +131,11 @@ async function runCountdown() {
 }
 
 function handleSelectPodRacer(target) {
+	// if the target is inside the track card, update target
+	if (!target.id) {
+		target = target.closest('.card.podracer')
+	}
+
 	console.log("selected a pod", target.id)
 
 	// remove class selected from all racer options
@@ -142,11 +147,11 @@ function handleSelectPodRacer(target) {
 	// add class selected to current target
 	target.classList.add('selected')
 
-	// TODO - save the selected racer to the store
+	// save the selected racer to the store
+	store.race_id = target.id
 }
 
 function handleSelectTrack(target) {
-	let { track_id } = store
 	// if the target is inside the track card, update target
 	if (!target.id) {
 		target = target.closest('.card.track')
@@ -163,7 +168,8 @@ function handleSelectTrack(target) {
 	target.classList.add('selected')
 
 	// save the selected track id to the store
-	track_id = target.id
+	store.track_id = target.id
+	debugger
 }
 
 function handleAccelerate() {
