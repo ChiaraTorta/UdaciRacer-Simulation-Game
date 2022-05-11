@@ -68,7 +68,7 @@ async function delay(ms) {
 async function handleCreateRace() {
 	try {
 		// Get player_id and track_id from the store
-		let { player_id, track_id} = store
+		const { player_id, track_id} = store
 		
 		// render starting UI
 		renderAt('#race', renderRaceStartView(`Track ${track_id}`))
