@@ -51,11 +51,6 @@ function setupClickHandlers() {
 			handleCreateRace()
 		}
 
-		// Handle acceleration click
-		if (target.matches('#gas-peddle')) {
-			handleAccelerate()
-		}
-
 	}, false)
 }
 
@@ -93,6 +88,11 @@ async function handleCreateRace() {
 		// call the async function startRace
 		await startRace(race_id)
 		console.log('The race has started!')
+
+		// add click event to accelerate once the run has started
+		document.getElementById('gas-peddle').addEventListener('click', function() {
+			handleAccelerate()
+		}, false)
 		
 		// call the async function runRace
 		await runRace(race_id)
