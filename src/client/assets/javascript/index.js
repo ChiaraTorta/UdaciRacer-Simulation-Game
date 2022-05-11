@@ -56,7 +56,7 @@ function setupClickHandlers() {
 
 async function delay(ms) {
 	try {
-		return await new Promise(resolve => setTimeout(resolve, ms));
+		return await new Promise(resolve => setTimeout(resolve, ms))
 	} catch(error) {
 		console.log("an error shouldn't be possible here")
 		console.log(error)
@@ -79,7 +79,7 @@ async function handleCreateRace() {
 		// update the store with the race id
 		// For the API to work properly, the race id should be race id - 1
 		store.race_id = race.ID - 1
-		const { race_id } = store;
+		const { race_id } = store
 
 		// The race has been created, now start the countdown
 		// call the async function runCountdown
@@ -98,7 +98,7 @@ async function handleCreateRace() {
 		await runRace(race_id)
 		
 	} catch (error) {
-		console.log(error.message);
+		console.log(error.message)
 	}
 }
 
@@ -118,7 +118,7 @@ function runRace(raceID) {
 					resolve(raceInfo)
 				}
 			} catch (error) {
-				console.log(error.message);
+				console.log(error.message)
 			}
 		}, 500, raceID)
 	})
@@ -146,7 +146,7 @@ async function runCountdown() {
 			}, 3000)
 		})
 	} catch(error) {
-		console.log(error);
+		console.log(error)
 	}
 }
 
