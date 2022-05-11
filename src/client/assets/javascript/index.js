@@ -90,7 +90,6 @@ async function handleCreateRace() {
 		// call the async function runCountdown
 		await runCountdown()
 
-		
 		// call the async function startRace
 		await startRace(race_id)
 		console.log('The race has started!')
@@ -195,7 +194,7 @@ function handleSelectTrack(target) {
 function handleAccelerate() {
 	console.log("accelerate button clicked")
 	// Invoke the API call to accelerate
-	accelerate(store.race_id-1)
+	accelerate(store.race_id)
 }
 
 // HTML VIEWS ------------------------------------------------
@@ -347,8 +346,6 @@ function defaultFetchOpts() {
 	}
 }
 
-// TODO - Make a fetch call (with error handling!) to each of the following API endpoints 
-
 function getTracks() {
 	return fetch(`${SERVER}/api/tracks`)
  	   	.then(response => response.json())
@@ -381,7 +378,6 @@ function createRace(player_id, track_id) {
 }
 
 function getRace(id) {
-	// GET request to `${SERVER}/api/races/${id}`
 	return fetch(`${SERVER}/api/races/${id}`)
 		.then(response => response.json())
 		.catch(error => console.error(error))
@@ -396,9 +392,6 @@ function startRace(id) {
 }
 
 function accelerate(id) {
-	// POST request to `${SERVER}/api/races/${id}/accelerate`
-	// options parameter provided as defaultFetchOpts
-	// no body or datatype needed for this request
 	fetch(`${SERVER}/api/races/${id}/accelerate`, {
 		method: 'POST',
 		defaultFetchOpts
