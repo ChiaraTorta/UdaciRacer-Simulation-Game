@@ -1,9 +1,6 @@
 /* PROGRESS PAGE SPECIFIC STYLES */
 
 /* -------------------  MOBILE  --------------------- */
-header {
-  background-image: url('https://via.placeholder.com/1150');
-}
 
 main#two-columns {
     margin: 50px 0;
@@ -19,8 +16,8 @@ section#accelerate button {
     width: 300px;
     margin: 30px auto;
     border-radius: 180%;
-    background-color: green;
-    border-color: rgb(14, 166, 6);
+    background-color: rgba(207, 0, 15, 1);
+    border-color: rgba(207, 0, 15, 1);
     cursor: pointer;
 }
 

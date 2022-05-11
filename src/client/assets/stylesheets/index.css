@@ -21,7 +21,7 @@ body {
 }
 
 header {
-  background-image: url('https://via.placeholder.com/1150');
+  background-image: url('https://images.unsplash.com/photo-1535107591942-51b1d7421721?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -67,10 +67,10 @@ p {
 .button {
   width: 250px;
   padding: 20px 10px;
-  background-color: green;
+  background-color: rgba(207, 0, 15, 1);
   cursor: pointer;
   border-radius: 4px;
-  border-color: 1px solid green;
+  border-color: rgba(207, 0, 15, 1);
   color: white;
   font-size: 20px;
   text-transform: uppercase;
@@ -93,6 +93,14 @@ section {
 footer {
   height: 200px;
   background-color: black;
+}
+
+footer p {
+  color: white;
+}
+
+footer p a {
+  color: rgba(207, 0, 15, 1);
 }
 
 /* -------------------  TABLET  --------------------- */
